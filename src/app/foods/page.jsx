@@ -1,11 +1,19 @@
 import React from 'react';
 
-const FoodPage = () => {
+const getFoods = async () => {
+    const res = await fetch("https://taxi-kitchen-api.vercel.app/api/v1/foods/random");
+    const data = await res.json();
+    return data.foods || [];
+};
+
+const FoodsPage = async () => {
+    const foods = await getFoods();
+
     return (
         <div>
-            <h1>Welcome to Food Shop</h1>
+            Total Foods Found: {foods.length}
         </div>
     );
 };
 
-export default FoodPage;
+export default FoodsPage;

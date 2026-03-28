@@ -35,7 +35,9 @@ export default function RootLayout({ children }) {
       </header>
       
 
-        {children}
+        <main className="px-8 py-2">
+          {children}
+        </main>
       </body>
     </html>
   );
