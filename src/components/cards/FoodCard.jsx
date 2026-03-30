@@ -16,7 +16,7 @@ const FoodCard = ({ food, onAddToCart, onViewDetails }) => {
         <p className="text-sm text-gray-500">{category}</p>
 
         <div className="flex justify-between items-center mt-3">
-          <span classname="text-xl font-bold">৳{price}</span>
+          <span className="text-xl font-bold">৳{price}</span>
         </div>
 
         <div className="flex gap-3 mt-4">
