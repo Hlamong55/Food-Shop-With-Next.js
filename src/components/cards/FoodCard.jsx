@@ -1,8 +1,9 @@
 "use client";
+import Link from "next/link";
 import React from "react";
 
 const FoodCard = ({ food, onAddToCart, onViewDetails }) => {
-  const { title, price, foodImg, category } = food;
+  const { title, price, foodImg, category, id } = food;
 
   return (
     <div className="bg-white shadow-md rounded-xl overflow-hidden border border-gray-400 hover:shadow-lg transition p-3.5">
@@ -28,12 +29,13 @@ const FoodCard = ({ food, onAddToCart, onViewDetails }) => {
             Add to Cart
           </button>
 
-          <button
+          <Link
+            href={`/foods/${id}`}
             onClick={() => onViewDetails(food)}
-            className="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+            className="flex-1 text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
           >
             View Details
-          </button>
+          </Link>
         </div>
       </div>
     </div>
