@@ -16,7 +16,7 @@ const FoodsPage = async () => {
                 Total Foods Available: <span className='text-yellow-500'>{foods.length}</span>
             </h2>
 
-            <div>
+            <div className='grid my-5 grid-cols-4 gap-5'>
                 {
                     foods.map((food) => <FoodCard
                     key={food.id}

@@ -25,8 +25,10 @@ export default function RootLayout({ children }) {
       >
 
      <header className="px-8 py-2 flex justify-between items-center">
-        <img
+        <Link href={"/"}>
+          <img
         className="rounded-full w-18" src="/images.png" alt="" />
+        </Link>
 
         <div className="space-x-4">
           <Link className="p-3 bg-yellow-500 font-semibold hover:bg-amber-500 hover:text-white rounded-lg" href="/foods">Food</Link>
