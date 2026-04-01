@@ -2,11 +2,11 @@ import React from "react";
 
 const getSingleFood = async (id) => {
   const res = await fetch(
-    `https://taxi-kitchen-api.vercel.app/api/v1/foods/${id}`,
-    { cache: "no-store" }
+    `https://taxi-kitchen-api.vercel.app/api/v1/foods/${id}`
   );
+
   const data = await res.json();
-  return data.details;
+  return data?.details;  // FIXED
 };
 
 const Page = async ({ params }) => {
@@ -15,69 +15,63 @@ const Page = async ({ params }) => {
 
   if (!food) {
     return (
-      <div className="text-center py-24">
-        <h2 className="text-2xl font-semibold text-gray-600">
-          Food Not Available
-        </h2>
+      <div className="text-center py-20">
+        <h2 className="text-xl font-semibold">Food Not Available</        h2>
       </div>
     );
   }
 
-  const { title, foodImg, price, category, area, video } = food;
-
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10">
-      {/* Back */}
-      <a href="/foods" className="text-blue-600 hover:underline mb-4 inline-block">
+    <div className="max-w-4xl mx-auto px-5 py-10">
+
+      <a href="/foods" className="text-blue-600 underline">
         ← Back to Foods
       </a>
 
-      <div className="bg-white shadow-md rounded-xl p-6 border">
-        {/* Food Image */}
+      <div className="bg-white shadow-lg rounded-xl p-6 mt-5">
+
+        {/* IMAGE */}
         <img
-          src={foodImg}
-          alt={title}
+          src={food.foodImg}
+          alt={food.title}
           className="w-full h-80 object-cover rounded-lg"
         />
 
-        {/* Title + Category */}
-        <h1 className="text-3xl font-bold mt-6">{title}</h1>
+        <h1 className="text-3xl font-bold mt-6">{food.title}</h1>
 
-        <div className="flex items-center gap-4 mt-2 text-gray-600">
+        {/* CATEGORY + AREA */}
+        <div className="flex gap-3 mt-3">
           <span className="bg-gray-100 px-3 py-1 rounded-full text-sm">
-            Category: {category}
+            Category: {food.category}
           </span>
           <span className="bg-gray-100 px-3 py-1 rounded-full text-sm">
-            Area: {area}
+            Area: {food.area}
           </span>
         </div>
 
-        {/* Price */}
+        {/* PRICE */}
         <p className="text-2xl font-semibold text-green-600 mt-4">
-          ৳ {price}
+          ৳ {food.price}
         </p>
 
-        {/* Description Placeholder */}
-        <p className="text-gray-700 mt-4 leading-relaxed">
-          This delicious {title} is a perfect {category} dish inspired from
-          authentic {area} flavors. Enjoy a rich taste and premium quality
-          ingredients carefully selected to give you the best experience.
+        {/* DESCRIPTION */}
+        <p className="mt-4 text-gray-700">
+          This delicious {food.title} is crafted using premium ingredients
+          and inspired by rich {food.area} culinary traditions.
         </p>
 
-        {/* Add to Cart Button */}
-        <button
-          className="mt-6 w-full bg-green-600 hover:bg-green-700 transition text-white py-3 rounded-lg text-lg"
-        >
+        {/* ADD TO CART */}
+        <button className="w-full bg-green-600 hover:bg-green-700 text-white mt-6 py-3 rounded-lg text-lg">
           Add to Cart
         </button>
 
-        {/* YouTube Video */}
-        {video && (
+        {/* YOUTUBE VIDEO */}
+        {food.video && (
           <div className="mt-8">
             <h2 className="text-xl font-semibold mb-3">Recipe Video</h2>
             <div className="aspect-video">
               <iframe
-                src={video.replace("watch?v=", "embed/")}
+                src={food.video.replace("watch?v=", "embed/")}
                 className="w-full h-full rounded-lg"
                 allowFullScreen
               ></iframe>
