@@ -5,16 +5,22 @@ import React, { useEffect, useState } from "react";
 const ReviewsPage = () => {
   const [reviews, setReviews] = useState([]);
 
+  // useEffect(() => {
+  //   fetch("https://taxi-kitchen-api.vercel.app/api/v1/reviews")
+  //     .then((res) => res.json())
+  //     .then((result) => {
+  //       console.log("API RESULT:", result);
+
+  //       const arr = Array.isArray(result.reviews) ? result.reviews : [];
+  //       setReviews(arr);
+  //     })
+  //     .catch(() => setReviews([]));
+  // }, []);
+
   useEffect(() => {
     fetch("https://taxi-kitchen-api.vercel.app/api/v1/reviews")
       .then((res) => res.json())
-      .then((result) => {
-        console.log("API RESULT:", result);
-
-        const arr = Array.isArray(result.reviews) ? result.reviews : [];
-        setReviews(arr);
-      })
-      .catch(() => setReviews([]));
+      .then((data) => setReviews(data.reviews || []));
   }, []);
 
   return (

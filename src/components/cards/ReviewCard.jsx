@@ -20,7 +20,7 @@ export default function ReviewCard({ review }) {
   const date = new Date(review.date).toLocaleDateString();
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-5 space-y-4">
+    <div className="bg-gray-50 rounded-xl shadow-md p-5 min-h-70 space-y-4">
 
       {/* USER INFO */}
       <div className="flex items-center gap-3">
@@ -32,7 +32,7 @@ export default function ReviewCard({ review }) {
 
         <div>
           <h4 className="font-semibold">{review.user}</h4>
-          <p className="text-xs text-gray-500">{date}</p>
+          <p className="text-xs text-gray-700">{date}</p>
         </div>
       </div>
 
@@ -51,7 +51,7 @@ export default function ReviewCard({ review }) {
       {/* LIKE BUTTON */}
       <button
         onClick={handleLike}
-        className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-red-500 transition"
+        className="flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-red-500 transition"
       >
         <FaHeart className={liked ? "text-red-500" : ""} />
         {likes} Likes
