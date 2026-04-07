@@ -4,10 +4,17 @@ import React, { useEffect, useState } from "react";
 
 const ReviewsPage = () => {
   const [reviews, setReviews] = useState([]);
+
   useEffect(() => {
-    fetch(" https://taxi-kitchen-api.vercel.app/api/v1/reviews")
+    fetch("https://taxi-kitchen-api.vercel.app/api/v1/reviews")
       .then((res) => res.json())
-      .then((data) => setReviews(data));
+      .then((result) => {
+        console.log("API RESULT:", result);
+
+        const arr = Array.isArray(result.reviews) ? result.reviews : [];
+        setReviews(arr);
+      })
+      .catch(() => setReviews([]));
   }, []);
 
   return (
@@ -19,10 +26,7 @@ const ReviewsPage = () => {
 
       <div className="grid my-5 grid-cols-4 gap-5">
         {reviews.map((rev) => (
-          <ReviewCard
-          review={rev}
-          key={rev.id}
-          ></ReviewCard>
+          <ReviewCard review={rev} key={rev.id} />
         ))}
       </div>
     </div>
