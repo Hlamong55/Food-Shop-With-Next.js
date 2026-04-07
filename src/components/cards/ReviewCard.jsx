@@ -20,7 +20,7 @@ export default function ReviewCard({ review }) {
   const date = new Date(review.date).toLocaleDateString();
 
   return (
-    <div className="bg-gray-50 rounded-xl shadow-md p-5 min-h-70 space-y-4">
+    <div className="bg-gray-50 rounded-xl shadow-md p-5 min-h-80 space-y-4">
 
       {/* USER INFO */}
       <div className="flex items-center gap-3">
