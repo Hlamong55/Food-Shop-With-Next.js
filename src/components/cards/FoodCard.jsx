@@ -32,7 +32,7 @@ const FoodCard = ({ food, onAddToCart, onViewDetails }) => {
           <Link
             href={`/foods/${id}`}
             onClick={() => onViewDetails(food)}
-            className="flex-1 text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+            className="flex-1 text-center bg-yellow-500 hover:text-white py-2 rounded-lg hover:bg-amber-600 transition font-medium"
           >
             View Details
           </Link>

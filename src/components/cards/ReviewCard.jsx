@@ -8,50 +8,49 @@ export default function ReviewCard({ review }) {
   const [liked, setLiked] = useState(false);
 
   const handleLike = () => {
-    if (liked) {
-      setLikes(likes - 1);
-      setLiked(false);
-    } else {
-      setLikes(likes + 1);
-      setLiked(true);
-    }
+    setLikes(liked ? likes - 1 : likes + 1);
+    setLiked(!liked);
   };
 
   const date = new Date(review.date).toLocaleDateString();
 
   return (
-    <div className="bg-gray-50 rounded-xl shadow-md p-5 min-h-80 space-y-4">
+    <div className="bg-gray-50 rounded-xl shadow-md p-5 min-h-80 flex flex-col justify-between">
 
-      {/* USER INFO */}
-      <div className="flex items-center gap-3">
-        <img
-          src={review.photo}
-          alt={review.user}
-          className="w-12 h-12 rounded-full object-cover"
-        />
+      {/* TOP SECTION */}
+      <div className="space-y-4">
+        
+        {/* USER INFO */}
+        <div className="flex items-center gap-3">
+          <img
+            src={review.photo}
+            alt={review.user}
+            className="w-12 h-12 rounded-full object-cover"
+          />
 
-        <div>
-          <h4 className="font-semibold">{review.user}</h4>
-          <p className="text-xs text-gray-700">{date}</p>
+          <div>
+            <h4 className="font-semibold">{review.user}</h4>
+            <p className="text-xs text-gray-700">{date}</p>
+          </div>
         </div>
+
+        {/* RATING */}
+        <div className="flex gap-1 text-yellow-400">
+          {[...Array(review.rating)].map((_, i) => (
+            <FaStar key={i} />
+          ))}
+        </div>
+
+        {/* REVIEW TEXT */}
+        <p className="text-gray-700 leading-relaxed">
+          {review.review}
+        </p>
       </div>
 
-      {/* RATING */}
-      <div className="flex gap-1 text-yellow-400">
-        {[...Array(review.rating)].map((_, i) => (
-          <FaStar key={i} />
-        ))}
-      </div>
-
-      {/* REVIEW TEXT */}
-      <p className="text-gray-700 leading-relaxed">
-        {review.review}
-      </p>
-
-      {/* LIKE BUTTON */}
+      {/* LIKE BUTTON --- FIXED AT BOTTOM */}
       <button
         onClick={handleLike}
-        className="flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-red-500 transition"
+        className="flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-red-500 transition mt-4"
       >
         <FaHeart className={liked ? "text-red-500" : ""} />
         {likes} Likes
